@@ -13,7 +13,7 @@ module.exports = {
       template: './public/index.html', // 告诉webpack使用插件时, 以我们自己的html文件作为模板去生成dist/html文件
       filename: 'index.html', // 生成文件的名称
     }),
-    // new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
   ],
   module: {
     // loader 加载器 配置在这儿
@@ -70,6 +70,20 @@ module.exports = {
           // ext 文件扩展名
         },
       },
+      {
+        // webpack5默认内部不认识这些文件, 所以当做静态资源直接输出即可
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'font-[name].[hash:6][ext]',
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 1 * 1024,
+          },
+        },
+      },
+    
     ],
   },
 };
