@@ -27,3 +27,4 @@ class App {
   const fn = () => {
     console.log(111);
   }
+  import '../src/app.vue'

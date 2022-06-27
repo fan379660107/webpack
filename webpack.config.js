@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader')
 module.exports = {
   mode: 'development',
   entry: './src/main.js', // 入口
@@ -14,6 +15,7 @@ module.exports = {
       filename: 'index.html', // 生成文件的名称
     }),
     new CleanWebpackPlugin(),
+    new VueLoaderPlugin()
   ],
   module: {
     // loader 加载器 配置在这儿
@@ -93,6 +95,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
     ],
   },
 };
